@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +23,7 @@ public class ChatManager {
      *                The message is dated automatically (in UTC) and is returned to the called.
      */
     public void postMessage(String user, String message) {
-        messageList.add(new Message(user, message, new Date()));
+        messageList.add(new Message(user, message, new Date().getTime()));
     }
 
     public ArrayList<Message> listMessages() {
@@ -42,7 +42,7 @@ public class ChatManager {
 
     public void clearChat(long startDate, long endDate) {
         for (int i = this.messageList.size() - 1; i >= 0; i--) {
-            if (this.messageList.get(i).publishDate >= startDate && this.messageList.get(i).publishDate <= endDate) {
+            if (this.messageList.get(i).getPublishDate() >= startDate && this.messageList.get(i).getPublishDate() <= endDate) {
                 this.messageList.remove(i);
             }
         }

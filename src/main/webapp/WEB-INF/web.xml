@@ -10,7 +10,7 @@
 
     <servlet>
         <servlet-name>PostController</servlet-name>
-        <servlet-class>Controller.PostController</servlet-class>
+        <servlet-class>controller.PostController</servlet-class>
     </servlet>
 
     <servlet-mapping>

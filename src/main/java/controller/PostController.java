@@ -1,6 +1,7 @@
-package Controller;
+package controller;
 
-import Model.ChatManager;
+import model.ChatManager;
+import utils.ChatConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,10 @@ public class PostController extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (!checkReferer(request)){
+            response.sendError(403, "Forbidden");
+            return;
+        }
 //        @TODO: add new message to
         ChatManager chatManager = ChatManager.getInstance();
 
@@ -22,6 +27,10 @@ public class PostController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (!checkReferer(request)){
+            response.sendError(403, "Forbidden");
+            return;
+        }
 //        @TODO: Download Chat History
         request.getParameter("from");
         request.getParameter("to");
@@ -32,6 +41,10 @@ public class PostController extends HttpServlet {
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Delete Chatting history
+        if (!checkReferer(request)){
+            response.sendError(403, "Forbidden");
+            return;
+        }
         ChatManager chatManager = ChatManager.getInstance();
         String from = request.getParameter("from");
         String to = request.getParameter("to");
@@ -43,6 +56,23 @@ public class PostController extends HttpServlet {
             chatManager.clearChat();
         }
         response.sendRedirect("/index.jsp");
+    }
+
+    public static boolean checkReferer(HttpServletRequest request) {
+        String referer = request.getHeader("referer");
+        referer = referer == null ? request.getHeader("Referer") : referer;
+        if (referer != null) {
+            boolean flag = false;
+            for (String item : ChatConfig.REFERRER_WHITELIST){
+                if (referer.contains(item)){
+                    flag = true;
+                    break;
+                }
+            }
+            return flag;
+        } else {
+            return false;
+        }
     }
 
 }
