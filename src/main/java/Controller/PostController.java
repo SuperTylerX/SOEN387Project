@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @WebServlet(name = "PostController")
 public class PostController extends HttpServlet {
 
@@ -28,10 +29,20 @@ public class PostController extends HttpServlet {
 
 
     }
+
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // @TODO: Delete Chatting history
-
-
+        // Delete Chatting history
+        ChatManager chatManager = ChatManager.getInstance();
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        if (from != null && to != null && !from.equals("") && !to.equals("")) {
+            long begin = Long.parseLong(from);
+            long end = Long.parseLong(to);
+            chatManager.clearChat(begin, end);
+        } else {
+            chatManager.clearChat();
+        }
+        response.sendRedirect("/index.jsp");
     }
 
 }
