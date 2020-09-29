@@ -28,10 +28,19 @@ public class PostController extends HttpServlet {
 
 
     }
+
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // @TODO: Delete Chatting history
-
-
+        // Delete Chatting history
+        ChatManager chatManager = ChatManager.getInstance();
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        if ((from != "" || from != null) && (to != "" || to != null)) {
+            long begin = Long.parseLong(from);
+            long end = Long.parseLong(to);
+            chatManager.clearChat(begin, end);
+        } else {
+            chatManager.clearChat();
+        }
     }
 
 }
