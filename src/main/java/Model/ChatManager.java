@@ -38,12 +38,10 @@ public class ChatManager {
 
     public void clearChat() {
         this.messageList = new ArrayList<Message>();
-        //this.messageList.clear();
-        //this takes o(n)
     }
 
     public void clearChat(long startDate, long endDate) {
-        for (int i = 0; i < this.messageList.size(); i++) {
+        for (int i = this.messageList.size() - 1; i >= 0; i--) {
             if (this.messageList.get(i).publishDate >= startDate && this.messageList.get(i).publishDate <= endDate) {
                 this.messageList.remove(i);
             }
