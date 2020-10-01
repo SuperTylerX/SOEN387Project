@@ -20,9 +20,16 @@ public class PostController extends HttpServlet {
             response.sendError(403, "Forbidden");
             return;
         }
-//        @TODO: add new message to
         ChatManager chatManager = ChatManager.getInstance();
+        String user = request.getParameter("user");
+        String messageContent = request.getParameter("message");
 
+        // validate the parameter and store data in Message object
+        if(messageContent != null && !messageContent.isEmpty()){
+            chatManager.postMessage(user,messageContent);
+        }//TODO: when no message text, pass the error to the front-page to be displayed
+
+        response.sendRedirect("/index.jsp");
 
     }
 
