@@ -1,3 +1,9 @@
 # Project exclude paths
 /target/
+
+# Package Files
+*.war
+
+# IDEA config files
 .idea/
+*.iml
