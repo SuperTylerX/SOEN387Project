@@ -5,10 +5,10 @@ public class Message {
     private String content;
     private long publishDate;
 
-    public Message(){
+    public Message() {
     }
 
-    public Message(String content, long publishDate){
+    public Message(String content, long publishDate) {
         this(null, content, publishDate);
     }
 

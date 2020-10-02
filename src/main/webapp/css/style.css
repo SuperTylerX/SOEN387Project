@@ -1,0 +1,237 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.chat-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.chat-container .left-pannel {
+    width: 300px;
+    height: 100%;
+    background-color: #344955;
+    position: absolute;
+    top: 0;
+    left: -300px;
+    transition: all 0.2s ease 0s;
+    z-index: 99;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.chat-container .left-pannel .top-info {
+    height: 150px;
+    width: 100%;
+    background-color: #232F34;
+    position: relative;
+    cursor: pointer;
+}
+
+.chat-container .left-pannel .top-info:hover {
+    background-color: rgba(158, 158, 158, .2);
+}
+
+.chat-container .left-pannel .top-info img {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    margin-top: -40px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.chat-container .left-pannel .top-info #username {
+    position: absolute;
+    top: 63px;
+    left: 129px;
+    color: white;
+    font-size: 20px;
+}
+
+.chat-container .left-pannel .menu {
+    padding: 20px 0 0 0;
+    margin: 0;
+    list-style: none;
+}
+
+.chat-container .left-pannel .menu i {
+    padding-right: 20px;
+    font-size: 14px;
+}
+
+.chat-container .left-pannel .menu li {
+    padding-left: 20px;
+    height: 50px;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.chat-container .left-pannel .menu li:hover {
+    background-color: rgba(158, 158, 158, .2);
+}
+
+.chat-container .left-pannel .bottom-bar {
+    height: 60px;
+    width: 100%;
+    line-height: 30px;
+    font-size: 8px;
+    color: white;
+    padding-left: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #232F34;
+}
+
+.chat-container .right-main-box {
+    flex: 1;
+    position: relative;
+}
+
+.chat-container .right-main-box .top-bar {
+    height: 40px;
+    width: 100%;
+    background-color: #D2DBE0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    color: #344955;
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    position: relative;
+}
+
+.chat-container .right-main-box .top-bar i.fa-bars {
+    display: block;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    top: 50%;
+    margin-top: -10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.chat-container .right-main-box .top-bar i.fa-bars:hover {
+    background-color: rgba(158, 158, 158, .2);
+}
+
+.chat-container .right-main-box .chatting-list {
+    margin-top: 2px;
+    width: 100%;
+    height: calc(100% - 40px - 50px - 2px);
+    overflow-y: scroll;
+    padding: 0px 20px;
+    background-color: #fff;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message {
+    width: 100%;
+    position: relative;
+    border-top: 1px solid #edf0f2;
+    padding: 10px 0 10px 40px;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message:first-child {
+    border-top: none;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-avatar {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-size: 100% 100%;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta {}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta .chat-name {
+    color: #0078d7;
+    font-size: 13px;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta .chat-time {
+    color: #777;
+    font-size: 11px;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-text {
+    font-size: 13px;
+}
+
+.chat-container .right-main-box .typing-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat-container .right-main-box .typing-box form {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.chat-container .right-main-box .typing-box form .bmd-form-group {
+    padding-top: 0;
+    display: flex;
+    width: 100%;
+}
+
+.chat-container .right-main-box .typing-box form input {
+    margin: 8px 0 0 10px;
+    flex: 1;
+}
+
+.chat-container .right-main-box .typing-box form button {
+    margin-bottom: 0;
+    margin: 8px 10px 0 10px;
+}
+
+.time-modal .modal-body label {
+    position: relative;
+    display: block;
+    margin-top: 30px;
+}
+
+.time-modal .modal-body label .bmd-form-group {
+    position: absolute;
+    top: -6px;
+    left: 71px;
+    padding-top: 0;
+}
+
+#download-format label {
+    float: left;
+}
+
+#download-format label:first-child {
+    padding-right: 20px;
+}
+
+#clear_modal form {
+    margin-bottom: 0
+}
+
+#clear_modal .modal-content .modal-footer {
+    padding-top: 40px
+}
