@@ -18,6 +18,11 @@
         <servlet-class>controller.PostController</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>DeleteController</servlet-name>
+        <servlet-class>controller.DeleteController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index.jsp</url-pattern>
@@ -26,6 +31,11 @@
     <servlet-mapping>
         <servlet-name>PostController</servlet-name>
         <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DeleteController</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 
 
