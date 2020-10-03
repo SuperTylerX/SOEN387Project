@@ -5,6 +5,13 @@ public class Message {
     private String content;
     private long publishDate;
 
+    public Message() {
+    }
+
+    public Message(String content, long publishDate) {
+        this(null, content, publishDate);
+    }
+
     public Message(String username, String content, long publishDate) {
         this.username = username;
         this.content = content;

@@ -23,7 +23,11 @@ public class ChatManager {
      *                The message is dated automatically (in UTC) and is returned to the called.
      */
     public void postMessage(String user, String message) {
-        messageList.add(new Message(user, message, new Date().getTime()));
+        if (user == null || user.isEmpty()) {
+            messageList.add(new Message(message, new Date().getTime()));
+        } else {
+            messageList.add(new Message(user, message, new Date().getTime()));
+        }
     }
 
     public ArrayList<Message> listMessages() {

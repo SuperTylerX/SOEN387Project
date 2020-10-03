@@ -11,38 +11,28 @@ import java.io.IOException;
 
 import static utils.Tool.checkReferer;
 
-
-@WebServlet(name = "PostController")
-public class PostController extends HttpServlet {
-
-
+@WebServlet(name = "DeleteController")
+public class DeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Delete Chatting history
         if (!checkReferer(request)) {
             response.sendError(403, "Forbidden");
             return;
         }
         ChatManager chatManager = ChatManager.getInstance();
-        String user = request.getParameter("username");
-        String messageContent = request.getParameter("message");
-
-        // validate the parameter and store data in Message object
-        if (messageContent != null && !messageContent.isEmpty()) {
-            chatManager.postMessage(user, messageContent);
-        }//TODO: when no message text, pass the error to the front-page to be displayed
-
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        if (from != null && to != null && !from.equals("") && !to.equals("")) {
+            long begin = Long.parseLong(from);
+            long end = Long.parseLong(to);
+            chatManager.clearChat(begin, end);
+        } else {
+            chatManager.clearChat();
+        }
         response.sendRedirect("/index.jsp");
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!checkReferer(request)) {
-            response.sendError(403, "Forbidden");
-            return;
-        }
-//        @TODO: Download Chat History
-        request.getParameter("from");
-        request.getParameter("to");
-        request.getParameter("format");
 
     }
 
