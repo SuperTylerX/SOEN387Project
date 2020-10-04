@@ -40,9 +40,21 @@ public class PostController extends HttpServlet {
             return;
         }
 //        @TODO: Download Chat History
-        request.getParameter("from");
-        request.getParameter("to");
-        request.getParameter("format");
+
+        ChatManager chatManager = ChatManager.getInstance();
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        String format = request.getParameter("format");
+
+        if(from != null && to != null && !from.equals("") && !to.equals("")){
+            long start = Long.parseLong(from);
+            long end = Long.parseLong(to);
+            chatManager.listMessages(start,end);
+        }
+        else
+            chatManager.listMessages();
+        //probably also need (begin,null) and (null,end) for simplicity
+        //After getting the arraylist, print it
 
     }
 
