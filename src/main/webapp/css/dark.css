@@ -1,0 +1,50 @@
+body {
+    background-color: #121212;
+}
+
+.chat-container .right-main-box .top-bar {
+    background-color: #1F1F1F;
+    color: #fff;
+}
+
+.chat-container .right-main-box .chatting-list {
+    background-color: #121212;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message {
+    border-top: 1px solid #1F1F1F;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-content-text {
+    color: #DADADA;
+}
+
+.chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta .chat-name {
+    color: #9059F2;
+}
+
+.custom-file-control,
+.form-control,
+.is-focused .custom-file-control,
+.is-focused .form-control {
+    background-image: linear-gradient(0deg, #9059F2 2px, rgba(0, 150, 136, 0) 0), linear-gradient(0deg, rgba(255, 255, 255, .26) 1px, transparent 0);
+    color: #DADADA;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+    background-color: #6200EE;
+}
+
+.chat-container .right-main-box .typing-box {
+    background-color: #1F1F1F;
+}
+
+.btn.btn-primary.active:hover {
+    color: #fff;
+}
+
+.btn.btn-primary.active {
+    color: #ccc;
+}

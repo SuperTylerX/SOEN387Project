@@ -1,21 +1,23 @@
-(function() {
+(function () {
 
     // Init Material UI
-    $(document).ready(function() { $('body').bootstrapMaterialDesign(); });
+    $(document).ready(function () {
+        $('body').bootstrapMaterialDesign();
+    });
 
-    $("#bar-btn").click(function(e) {
+    $("#bar-btn").click(function (e) {
         e.stopPropagation()
         $(".left-pannel").css({
             left: "0"
         })
-        $('.chat-container').click(function(event) {
+        $('.chat-container').click(function (event) {
             $(".left-pannel").css({
                 left: "-300px"
             })
             $('.chat-container').off("click")
             $(".left-pannel").off("click")
         })
-        $(".left-pannel").click(function(event) {
+        $(".left-pannel").click(function (event) {
             event.stopPropagation()
         })
     })
@@ -31,11 +33,11 @@
         $('#username-input').prop("disabled", true)
     }
 
-    // Add Username listenner
-    $('#user-area').click(function() {
+    // Add Username listener
+    $('#user-area').click(function () {
         $('#username_modal').modal()
     })
-    $('#anonymous-switch').click(function() {
+    $('#anonymous-switch').click(function () {
         if (this.checked) {
             $('#username-input').prop("disabled", true)
         } else {
@@ -43,7 +45,7 @@
             $('#username-input').prop("disabled", false)
         }
     })
-    $('#username-save-btn').click(function() {
+    $('#username-save-btn').click(function () {
         if ($('#anonymous-switch').prop("checked")) {
             localStorage.removeItem("username")
             $('#username').html("Anonymous")
@@ -57,26 +59,26 @@
         $('#username_modal').modal('hide')
     })
 
-    // Add theme button listenner
-    $('#theme-btn').click(function() {
+    // Add theme button listener
+    $('#theme-btn').click(function () {
         $('#theme_modal').modal()
     })
-    $('#theme-save-btn').click(function() {
-        var color = $('#theme_modal input[name="color"]:checked').val();
-        document.cookie = "color=" + color;
+    $('#theme-save-btn').click(function () {
+        var color = $('#theme_modal input[name="theme"]:checked').val();
+        document.cookie = "theme=" + color;
         location.reload()
     })
 
-    // Add refresh button listenner
-    $('#refresh-btn').click(function() {
+    // Add refresh button listener
+    $('#refresh-btn').click(function () {
         location.reload()
     })
 
-    // Add Download button listenner
-    $('#download-btn').click(function() {
+    // Add Download button listener
+    $('#download-btn').click(function () {
         $('#download_modal').modal()
     })
-    $('#download-save-btn').click(function() {
+    $('#download-save-btn').click(function () {
         var from_raw = $('#download-from').val()
         var to_raw = $('#download-to').val()
         var from = to = ''
@@ -85,16 +87,16 @@
             to = new Date(to_raw + 'Z').getTime();
         }
         var format = $('#download-format input[name="format"]:checked').val()
-        window.open("./?from=" + from + "&to=" + to + "&format=" + format, "_blank")
+        window.open("./post?from=" + from + "&to=" + to + "&format=" + format, "_blank")
         $('#download_modal').modal('hide')
     })
 
-    // Add Clear button listenner
-    $('#clear-btn').click(function() {
+    // Add Clear button listener
+    $('#clear-btn').click(function () {
         $('#clear_modal').modal()
     })
 
-    $('#clear-form').submit(function() {
+    $('#clear-form').submit(function () {
         var from_raw = $('#clear-from').val()
         var to_raw = $('#clear-to').val()
         var from = to = ''
@@ -107,4 +109,13 @@
         $('#to-hidden-input').val(to)
     })
 
+    document.getElementById('message-input').oninput = function () {
+        if (this.value.length === 0) {
+            console.log(true)
+            $('#send-btn').prop('disabled', true)
+        } else {
+            console.log(false)
+            $('#send-btn').prop('disabled', false)
+        }
+    }
 })()

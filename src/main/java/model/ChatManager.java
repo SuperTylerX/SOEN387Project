@@ -38,7 +38,7 @@ public class ChatManager {
         ArrayList<Message> filteredList = new ArrayList<Message>();
         for (Message m : messageList) {
             long pd = m.getPublishDate();
-            if(pd >= startDate && pd <= endDate)
+            if (pd >= startDate && pd <= endDate)
                 filteredList.add(m);
         }
         return (ArrayList<Message>) filteredList.clone();

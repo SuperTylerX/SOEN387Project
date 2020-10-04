@@ -130,7 +130,7 @@ body {
     width: 100%;
     height: calc(100% - 40px - 50px - 2px);
     overflow-y: scroll;
-    padding: 0px 20px;
+    padding: 0 20px;
     background-color: #fff;
 }
 
@@ -148,7 +148,7 @@ body {
 .chat-container .right-main-box .chatting-list .chat-message .chat-avatar {
     position: absolute;
     top: 10px;
-    left: 0px;
+    left: 0;
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -160,11 +160,13 @@ body {
     flex-direction: column;
 }
 
-.chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta {}
+.chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta {
+}
 
 .chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta .chat-name {
-    color: #0078d7;
+    color: #009688;
     font-size: 13px;
+    font-weight: 700;
 }
 
 .chat-container .right-main-box .chatting-list .chat-message .chat-content .chat-content-meta .chat-time {
@@ -203,7 +205,6 @@ body {
 }
 
 .chat-container .right-main-box .typing-box form button {
-    margin-bottom: 0;
     margin: 8px 10px 0 10px;
 }
 
