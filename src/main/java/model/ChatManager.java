@@ -31,7 +31,7 @@ public class ChatManager {
     }
 
     public ArrayList<Message> listMessages() {
-        return messageList;
+        return (ArrayList<Message>) messageList.clone();
     }
 
     public ArrayList<Message> listMessages(long startDate, long endDate) {
@@ -41,7 +41,7 @@ public class ChatManager {
             if(pd >= startDate && pd <= endDate)
                 filteredList.add(m);
         }
-        return filteredList;
+        return (ArrayList<Message>) filteredList.clone();
     }
 
     public void clearChat() {
