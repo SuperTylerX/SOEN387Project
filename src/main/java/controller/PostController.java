@@ -25,9 +25,14 @@ public class PostController extends HttpServlet {
             response.sendError(403, "Forbidden");
             return;
         }
+
         ChatManager chatManager = ChatManager.getInstance();
         String user = request.getParameter("username");
         String messageContent = request.getParameter("message");
+
+        user = new String(user .getBytes("iso8859_1"),"utf-8");
+        messageContent = new String(messageContent .getBytes("iso8859_1"),"utf-8");
+
         // validate the parameter and store data in Message object
         if (messageContent != null && !messageContent.isEmpty()) {
             chatManager.postMessage(user, messageContent);
