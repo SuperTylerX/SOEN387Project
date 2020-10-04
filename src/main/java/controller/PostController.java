@@ -25,9 +25,14 @@ public class PostController extends HttpServlet {
             response.sendError(403, "Forbidden");
             return;
         }
+
         ChatManager chatManager = ChatManager.getInstance();
         String user = request.getParameter("username");
         String messageContent = request.getParameter("message");
+
+        user = new String(user.getBytes("iso8859_1"), "utf-8");
+        messageContent = new String(messageContent.getBytes("iso8859_1"), "utf-8");
+
         // validate the parameter and store data in Message object
         if (messageContent != null && !messageContent.isEmpty()) {
             chatManager.postMessage(user, messageContent);
@@ -62,14 +67,14 @@ public class PostController extends HttpServlet {
 
         if (format == null || format.isEmpty() || format.equals("text")) {
             response.setContentType("text/plain");
-            response.setHeader( "Content-Disposition", "attachment;filename=history.txt");
+            response.setHeader("Content-Disposition", "attachment;filename=history.txt");
             PrintWriter out = response.getWriter();
             out.println(messages);
         } else {
             XMLTransformer transformer = XMLTransformer.getInstance();
             String str = transformer.toXMLString(messages);
             response.setContentType("application/xml");
-            response.setHeader( "Content-Disposition", "attachment;filename=history.xml");
+            response.setHeader("Content-Disposition", "attachment;filename=history.xml");
             PrintWriter out = response.getWriter();
             out.println(str);
         }
