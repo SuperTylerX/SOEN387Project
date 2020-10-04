@@ -1,6 +1,8 @@
 package controller;
 
 import model.ChatManager;
+import model.Message;
+import utils.XMLTransformer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import static utils.Tool.checkReferer;
 
@@ -39,11 +43,36 @@ public class PostController extends HttpServlet {
             response.sendError(403, "Forbidden");
             return;
         }
-//        @TODO: Download Chat History
-        request.getParameter("from");
-        request.getParameter("to");
-        request.getParameter("format");
+
+        ChatManager chatManager = ChatManager.getInstance();
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        String format = request.getParameter("format");
+        ArrayList<Message> messages = null;
+
+        if (from != null && to != null && !from.equals("") && !to.equals("")) {
+            long start = Long.parseLong(from);
+            long end = Long.parseLong(to);
+
+            messages = chatManager.listMessages(start, end);
+        } else {
+            messages = chatManager.listMessages();
+        }
+        //probably also need (begin,null) and (null,end) for simplicity
+        //After getting the arraylist, print it
+
+        if (format == null || format.isEmpty() || format.equals("text")) {
+            response.setContentType("text/plain");
+            PrintWriter out = response.getWriter();
+            out.println(messages);
+        } else {
+            XMLTransformer transformer = XMLTransformer.getInstance();
+            String str = transformer.toXMLString(messages);
+
+            response.setContentType("application/xml");
+            PrintWriter out = response.getWriter();
+            out.println(str);
+        }
 
     }
-
 }

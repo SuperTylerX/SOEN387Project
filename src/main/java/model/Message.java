@@ -8,6 +8,15 @@ public class Message {
     public Message() {
     }
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "username='" + username + '\'' +
+                ", content='" + content + '\'' +
+                ", publishDate=" + publishDate +
+                '}';
+    }
+
     public Message(String content, long publishDate) {
         this(null, content, publishDate);
     }
@@ -28,6 +37,14 @@ public class Message {
 
     public long getPublishDate() {
         return publishDate;
+    }
+    public Message clone(){
+        return new Message(this);
+    }
+    public Message(Message m){
+        this.username=m.getUsername();
+        this.content=m.getContent();
+        this.publishDate=m.getPublishDate();
     }
 
 }

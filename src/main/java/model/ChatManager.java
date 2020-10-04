@@ -31,13 +31,17 @@ public class ChatManager {
     }
 
     public ArrayList<Message> listMessages() {
-
-        return null;
+        return (ArrayList<Message>) messageList.clone();
     }
 
     public ArrayList<Message> listMessages(long startDate, long endDate) {
-
-        return null;
+        ArrayList<Message> filteredList = new ArrayList<Message>();
+        for (Message m : messageList) {
+            long pd = m.getPublishDate();
+            if(pd >= startDate && pd <= endDate)
+                filteredList.add(m);
+        }
+        return (ArrayList<Message>) filteredList.clone();
     }
 
     public void clearChat() {
