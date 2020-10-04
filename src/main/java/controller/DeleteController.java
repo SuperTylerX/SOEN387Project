@@ -29,11 +29,11 @@ public class DeleteController extends HttpServlet {
         } else {
             chatManager.clearChat();
         }
-        response.sendRedirect("/index.jsp");
+        response.sendRedirect("./index.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.sendError(403, "Forbidden");
     }
 
 }

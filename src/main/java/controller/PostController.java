@@ -28,14 +28,13 @@ public class PostController extends HttpServlet {
         ChatManager chatManager = ChatManager.getInstance();
         String user = request.getParameter("username");
         String messageContent = request.getParameter("message");
-
         // validate the parameter and store data in Message object
         if (messageContent != null && !messageContent.isEmpty()) {
             chatManager.postMessage(user, messageContent);
         }//TODO: when no message text, pass the error to the front-page to be displayed
 
-        response.sendRedirect("/index.jsp");
 
+        response.sendRedirect("./index.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,13 +62,14 @@ public class PostController extends HttpServlet {
 
         if (format == null || format.isEmpty() || format.equals("text")) {
             response.setContentType("text/plain");
+            response.setHeader( "Content-Disposition", "attachment;filename=history.txt");
             PrintWriter out = response.getWriter();
             out.println(messages);
         } else {
             XMLTransformer transformer = XMLTransformer.getInstance();
             String str = transformer.toXMLString(messages);
-
             response.setContentType("application/xml");
+            response.setHeader( "Content-Disposition", "attachment;filename=history.xml");
             PrintWriter out = response.getWriter();
             out.println(str);
         }
