@@ -8,7 +8,7 @@ public class Tool {
         referer = referer == null ? request.getHeader("Referer") : referer;
         if (referer != null) {
             boolean flag = false;
-            for (String item : ChatConfig.REFERRER_WHITELIST) {
+            for (String item : AppConfig.REFERRER_WHITELIST) {
                 if (referer.contains(item)) {
                     flag = true;
                     break;
