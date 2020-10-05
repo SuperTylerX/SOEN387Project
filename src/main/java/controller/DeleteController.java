@@ -22,7 +22,7 @@ public class DeleteController extends HttpServlet {
         ChatManager chatManager = ChatManager.getInstance();
         String from = request.getParameter("from");
         String to = request.getParameter("to");
-        if (from != null && to != null && !from.equals("") && !to.equals("")) {
+        if (from != null && to != null && !from.isEmpty() && !to.isEmpty()) {
             long begin = Long.parseLong(from);
             long end = Long.parseLong(to);
             chatManager.clearChat(begin, end);

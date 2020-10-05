@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import static utils.Tool.checkReferer;
@@ -30,14 +31,14 @@ public class PostController extends HttpServlet {
         String user = request.getParameter("username");
         String messageContent = request.getParameter("message");
 
-        user = new String(user.getBytes("iso8859_1"), "utf-8");
-        messageContent = new String(messageContent.getBytes("iso8859_1"), "utf-8");
-
         // validate the parameter and store data in Message object
         if (messageContent != null && !messageContent.isEmpty()) {
+            user = user == null ? null : new String(user.getBytes("iso8859_1"), StandardCharsets.UTF_8);
+            messageContent = new String(messageContent.getBytes("iso8859_1"), StandardCharsets.UTF_8);
             chatManager.postMessage(user, messageContent);
-        }//TODO: when no message text, pass the error to the front-page to be displayed
-
+        } else {
+            //TODO: when no message text, pass the error to the front-page to be displayed
+        }
 
         response.sendRedirect("./index.jsp");
     }
@@ -57,13 +58,16 @@ public class PostController extends HttpServlet {
         if (from != null && to != null && !from.equals("") && !to.equals("")) {
             long start = Long.parseLong(from);
             long end = Long.parseLong(to);
-
             messages = chatManager.listMessages(start, end);
         } else {
             messages = chatManager.listMessages();
         }
         //probably also need (begin,null) and (null,end) for simplicity
         //After getting the arraylist, print it
+
+        response.setHeader("pragma", "no-cache");
+        response.setHeader("cache-control", "no-cache");
+        response.setDateHeader("expires", 0);
 
         if (format == null || format.isEmpty() || format.equals("text")) {
             response.setContentType("text/plain");
