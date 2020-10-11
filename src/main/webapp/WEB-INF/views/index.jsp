@@ -1,14 +1,7 @@
-<%@ page import="model.ChatManager" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Message" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    ArrayList<Message> messageList = ChatManager.getInstance().listMessages();
-    request.setAttribute("messageList", messageList);
-%>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -59,6 +52,7 @@
         </div>
         <div class="chatting-list">
 
+            <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <c:forEach items="${messageList}" var="item">
                 <div class="chat-message">
                     <div class="chat-avatar" style="background-image: url(./images/avatar.png);"></div>

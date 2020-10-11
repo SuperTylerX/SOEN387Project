@@ -36,11 +36,11 @@ public class PostController extends HttpServlet {
             user = user == null ? null : new String(user.getBytes("iso8859_1"), StandardCharsets.UTF_8);
             messageContent = new String(messageContent.getBytes("iso8859_1"), StandardCharsets.UTF_8);
             chatManager.postMessage(user, messageContent);
-        } else {
-            //TODO: when no message text, pass the error to the front-page to be displayed
+            ArrayList<Message> messageList = chatManager.listMessages();
+            request.setAttribute("messageList", messageList);
+            // forward the request to the JSP page
+            getServletContext().getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
         }
-
-        response.sendRedirect("./index.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
