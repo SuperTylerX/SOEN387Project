@@ -37,7 +37,8 @@ public class PostController extends HttpServlet {
             messageContent = new String(messageContent.getBytes("iso8859_1"), StandardCharsets.UTF_8);
             chatManager.postMessage(user, messageContent);
         } else {
-            //TODO: when no message text, pass the error to the front-page to be displayed
+            response.sendError(403, "Forbidden");
+            return;
         }
 
         response.sendRedirect("./index.jsp");
